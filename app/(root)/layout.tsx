@@ -1,6 +1,11 @@
 import { ClerkProvider } from '@clerk/nextjs';
 import type { Metadata } from 'next';
 
+import TopBar from '@/components/shared/TopBar';
+import LeftBar from '@/components/shared/LeftBar';
+import RightBar from '@/components/shared/RightBar';
+import BottomBar from '@/components/shared/BottomBar';
+
 import '@/app/globals.css';
 
 import { Inter } from 'next/font/google';
@@ -21,7 +26,17 @@ export default function RootLayout({
 	return (
 		<ClerkProvider>
 			<html lang="en">
-				<body className={`${inter.className} bg-dark-1`}>{children}</body>
+				<body className={`${inter.className} bg-dark-1`}>
+					<TopBar />
+					<main className="flex flex-row">
+						<LeftBar />
+						<section className="main-container">
+							<div className="w-full max-w-4xl">{children}</div>
+						</section>
+						<RightBar />
+					</main>
+					<BottomBar />
+				</body>
 			</html>
 		</ClerkProvider>
 	);
