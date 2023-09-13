@@ -1,10 +1,9 @@
-import type { Metadata } from 'next';
+import { Metadata } from 'next';
+import { ClerkProvider } from '@clerk/nextjs';
 
-import './globals.css';
+import '@/app/globals.css';
 
 import { Inter } from 'next/font/google';
-
-const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
 	title: 'Threadr | Where Thoughts Unfold!',
@@ -12,14 +11,18 @@ export const metadata: Metadata = {
 		'Share, converse, and connect with the world through seamless threaded conversations. Make your ideas heard in a space designed for in-depth discussions.',
 };
 
+const inter = Inter({ subsets: ['latin'] });
+
 export default function RootLayout({
 	children,
 }: {
 	children: React.ReactNode;
 }) {
 	return (
-		<html lang="en">
-			<body className={inter.className}>{children}</body>
-		</html>
+		<ClerkProvider>
+			<html lang="en">
+				<body className={`${inter.className} bg-dark-1`}>{children}</body>
+			</html>
+		</ClerkProvider>
 	);
 }
